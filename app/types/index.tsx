@@ -3,8 +3,18 @@ export interface Product {
   name: string;
   price: number;
   description: string;
+  images: string[];
+  category: string;
+  stock: number;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
 }
 
 export interface Cart {
-  products: Product[];
+  products: CartItem[];
+  couponCode?: string | null;
+  discount?: number;
 }
