@@ -1,53 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  /* Page */
   --background: #faf9f7;
   --foreground: #1a1814;
-
-  /* Cards */
   --card-bg: #ffffff;
   --card-bg-alt: #f5f3ef;
   --card-border: #e8e4dc;
-
-  /* Text */
   --text-primary: #1a1814;
   --text-secondary: #6b6560;
   --text-muted: #a8a39c;
-
-  /* Gold — the only accent */
   --accent-gold: #b8933e;
   --accent-gold-soft: #faf6ec;
   --accent-gold-border: #dcc878;
   --accent-gold-text: #5c4410;
-
-  /* Ink — CTAs, "limited" badges */
   --accent-ink: #1a1814;
   --accent-ink-text: #faf9f7;
 }
 
-.dark {
-  /* Page */
+:root.dark {
   --background: #111009;
   --foreground: #f5f2ea;
-
-  /* Cards */
   --card-bg: #1c1a12;
   --card-bg-alt: #242218;
   --card-border: #38352a;
-
-  /* Text */
   --text-primary: #f5f2ea;
   --text-secondary: #a09880;
   --text-muted: #58533e;
-
-  /* Gold */
   --accent-gold: #d4a84b;
   --accent-gold-soft: #1c1608;
   --accent-gold-border: #8a6e28;
   --accent-gold-text: #f0d898;
-
-  /* Ink — inverts in dark mode */
   --accent-ink: #f5f2ea;
   --accent-ink-text: #111009;
 }
@@ -64,5 +46,3 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
-
-@variant dark (&:where(.dark, .dark *));
