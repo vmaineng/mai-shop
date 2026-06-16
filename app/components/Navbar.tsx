@@ -44,7 +44,7 @@ export default function Navbar() {
           )}
         </button>
         <button
-          onClick={() => setMenuOpen((prev) => !prev)}
+          onClick={() => setMenuOpen(!menuOpen)}
           className="text-(--text-secondary)"
         >
           {menuOpen ? (
