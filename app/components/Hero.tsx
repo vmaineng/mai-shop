@@ -57,7 +57,21 @@ export default function Hero() {
   const slide = SLIDES[current];
 
   return (
-    <div className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+    <div className="relative h-[70vh] min-h-125 flex flex-col items-center justify-center overflow-hidden">
+      <div
+        className="absolute inset-0 transition-all duration-700"
+        style={{ background: slide.bg }}
+      />
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-0 bottom-0 border-l border-(--card-border)"
+          style={{ left: "20%" }}
+        />
+        <div
+          className="absolute top-0 bottom-0 border-l border-(--card-border)"
+          style={{ left: "80%" }}
+        />
+      </div>
       <div
         className="relative z-10 text-center px-6 max-w-3xl mx-auto"
         style={{
@@ -78,47 +92,55 @@ export default function Hero() {
         </p>
         <h1 className="tracking-tight text-(--text-primary mb-8">
           {slide.headline[0]}
+          <br />
+          <em style={{ fontStyle: "italic" }}>{slide.headline[1]}</em>
         </h1>
         <p className="text-sm text-(--text-secondary) max-w-xs mx-auto mb-10 leading-relaxed">
           {slide.sub}
         </p>
-        <button
-          onClick={prev}
-          className="absolute left-5 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center border border-[var(--card-border)] bg-[var(--background)] hover:border-[var(--accent-gold)] transition-colors"
-          aria-label="Previous slide"
-        >
-          <ArrowLeft className="h-3.5 w-3.5 text-(--text-secondary" />
-        </button>
-        <button
-          onClick={next}
-          className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center border border-[var(--card-border)] bg-[var(--background)] hover:border-[var(--accent-gold)] transition-colors"
-          aria-label="Next slide"
-        >
-          <ArrowRight className="h-3.5 w-3.5 text-(--text-secondary" />
-        </button>
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-          {SLIDES.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => goTo(i, i > current ? "next" : "prev")}
-              aria-label={`Go to slide ${i + 1}`}
-              className="relative h-px w-8 bg-(--card-border) overflow-hidden"
-            >
-              {i === current && (
-                <span
-                  className="absolute top-0 left-0 h-full bg-(--accent-gold)"
-                  style={{
-                    animation: `progress ${INTERVAL}ms linear forwards`,
-                  }}
-                />
-              )}
-              {i !== current && (
-                <span className="absolute top-0 left-0 h-full w-0 bg-(--text-muted)" />
-              )}
-            </button>
-          ))}
-        </div>
       </div>
+      <button
+        onClick={prev}
+        className="absolute left-5 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center border border-[var(--card-border)] bg-[var(--background)] hover:border-[var(--accent-gold)] transition-colors"
+        aria-label="Previous slide"
+      >
+        <ArrowLeft className="h-3.5 w-3.5 text-(--text-secondary)" />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center border border-[var(--card-border)] bg-[var(--background)] hover:border-[var(--accent-gold)] transition-colors"
+        aria-label="Next slide"
+      >
+        <ArrowRight className="h-3.5 w-3.5 text-(--text-secondary)" />
+      </button>
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+        {SLIDES.map((s, i) => (
+          <button
+            key={s.id}
+            onClick={() => goTo(i, i > current ? "next" : "prev")}
+            aria-label={`Go to slide ${i + 1}`}
+            style={{
+              width: i === current ? "48px" : "20px",
+              height: "3px",
+              position: "relative",
+              overflow: "hidden",
+              background: "var(--accent-gold-border)",
+              transition: "width 0.3s ease",
+            }}
+          >
+            {i === current ? (
+              <span
+                key={current}
+                className="absolute top-0 left-0 h-full bg-(--accent-gold-border)"
+                style={{
+                  animation: `progress ${INTERVAL}ms linear forwards`,
+                }}
+              />
+            ) : null}
+          </button>
+        ))}
+      </div>
+      ;
     </div>
   );
 }
