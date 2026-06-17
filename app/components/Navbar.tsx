@@ -11,7 +11,7 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="w-full px-6 sm:px-8 py-4 flex items-center justify-between">
+    <nav className="w-full px-6 sm:px-8 py-4 flex items-center justify-between sticky">
       <div className="text-sm text-(--text-secondary">Shoppeee</div>
       <div className="hidden md:flex items-center gap-8">
         {NAV_ITEMS.map((item) => (
